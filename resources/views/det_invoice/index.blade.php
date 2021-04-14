@@ -43,7 +43,9 @@
                         <div class="form-gorup">
                             <strong>Courier </strong>
                             <select name="courier" class="selectpicker form-control" title="Choose Courier...">
-                                <option value=""></option>
+                                @foreach ($courier as $row)
+                                    <option value="{{$row->id}}">{{$row->courier_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
