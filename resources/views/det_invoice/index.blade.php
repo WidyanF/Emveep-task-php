@@ -35,11 +35,13 @@
                         <div class="form-gorup">
                             <strong>Sales Name</strong>
                             <select name="sales_name" class="selectpicker form-control" title="Choose Sales Name...">
-                                <option value=""></option>
+                                @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->sales_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-gorup">
-                            <strong>Sales Name</strong>
+                            <strong>Courier </strong>
                             <select name="courier" class="selectpicker form-control" title="Choose Courier...">
                                 <option value=""></option>
                             </select>
