@@ -56,10 +56,9 @@
 
                         </div>
                         <div class="form-group">
-                            <strong>Payment Type</strong>
-                            <select name="payment_type" class="selectpicker form-control" title="Choose Payment Type...">
-                                <option value="Cash">Cash</option>
+                            <select name="payment" id="payment" class="selectpicker form-control" title="Choose payment type ...">
                                 <option value="Pay Later">Pay Later</option>
+                                <option value="Cash">Cash</option>
                             </select>
                         </div>
                     </div>
