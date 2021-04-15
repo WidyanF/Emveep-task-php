@@ -134,8 +134,8 @@ function rupiah($val){
                     </tfoot>
                 </table>
             </div>
-            <input type="text" name="SubTotal" value="{{$subTotal}}">
-            <input type="text" name="Courierfee" value="{{$sum}}">
+            <input type="text" name="SubTotal" value="{{$subTotal}}" hidden>
+            <input type="text" name="Courierfee" value="{{$sum}}" hidden>
             
             @endforeach
             <div class="card-footer">

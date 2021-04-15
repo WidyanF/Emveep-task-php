@@ -38,7 +38,6 @@ class trInvoiceController extends Controller
 
     public function update(Request $request, $no_invoice)
     {
-        
         $validatedata =$request->validate([
             'invoice_date' => 'required',
             'To' => 'required',
@@ -49,8 +48,10 @@ class trInvoiceController extends Controller
             'SubTotal' => 'required',
             'Courierfee' => 'required',
           ]);
+          $sub = $validatedata['SubTotal'];
 
-         trInvoice::where('no_invoice',$no_invoice)->update($validatedata);
+          trInvoice::where('no_invoice',$no_invoice)->update($validatedata);
+          trInvoiceDetail::where('id_invoice', $no_invoice)->update(['sub_total'=>$sub]);
 
           return redirect()->route('invoice.index')->with('success','Berhasil');
     }
