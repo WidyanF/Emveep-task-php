@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCouriersTable extends Migration
+class CreateMsProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCouriersTable extends Migration
      */
     public function up()
     {
-        Schema::create('couriers', function (Blueprint $table) {
+        Schema::create('ms_products', function (Blueprint $table) {
             $table->id();
-            $table->string('courier_name');
-            $table->BigInteger('courier_fee');
+            $table->string('Item');
+            $table->BigInteger('price');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCouriersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('couriers');
+        Schema::dropIfExists('ms_products');
     }
 }

@@ -9,4 +9,9 @@ class sales extends Model
 {
     use HasFactory;
     protected $fillable = ['sales_name'];
+
+    public function trinvoice()
+    {
+        return $this->hasMany('trInvoice');
+    }
 }

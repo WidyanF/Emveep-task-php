@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class courier extends Model
 {
     use HasFactory;
-    protected $fillable = ['courier_name'];
+    protected $fillable = ['courier_name','courier_fee'];
+    public function trinvoice()
+    {
+        return $this->hasMany('trInvoice');
+    }
 }
