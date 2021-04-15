@@ -20,7 +20,7 @@ class CreateTrInvoiceDetailsTable extends Migration
             $table->Integer('qty');
             $table->unsignedBigInteger('sub_total');
             $table->timestamps();
-            $table->foreign('id_invoice')->references('id')->on('tr_invoices')->onDelete('cascade');
+            $table->foreign('id_invoice')->references('no_invoice')->on('tr_invoices')->onDelete('cascade');
             $table->foreign('id_product')->references('id')->on('ms_products')->onDelete('cascade');
         });
     }

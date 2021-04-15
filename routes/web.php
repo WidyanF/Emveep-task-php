@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/invoice', trInvoiceController::class);
+Route::resource('invoice', trInvoiceController::class);

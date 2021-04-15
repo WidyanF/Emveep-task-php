@@ -6,7 +6,7 @@
                     <strong class="pl-2">No Invoice</strong>
                     <select name="noInvoice" id="noInvoice" class="selectpicker form-control mx-2 " data-live-search="true" title="Choose No. Invoice....">
                         @foreach ($data_inv as $item)
-                        <option value="{{$item->id}}}}">{{$item->id}}</option>
+                        <option value="{{$item->no_invoice}}}}">{{$item->no_invoice}}</option>
                             
                         @endforeach
                     </select>

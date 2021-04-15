@@ -14,7 +14,7 @@ class CreateTrInvoicesTable extends Migration
     public function up()
     {
         Schema::create('tr_invoices', function (Blueprint $table) {
-            $table->id()->uniqid();
+            $table->id('no_invoice')->uniqid();
             $table->date('invoice_date');
             $table->String('To');
             $table->unsignedBigInteger('id_sales')->index();

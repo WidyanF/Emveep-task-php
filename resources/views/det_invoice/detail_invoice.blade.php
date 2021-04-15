@@ -32,24 +32,24 @@ function rupiah($val){
         <div class="card-header bg-primary text-white">
             <h5>Invoice Detail</h5>
         </div>
+        @foreach ($data as $trInv)
         <div class="card-body">
-            <form action="" method="POST">
-                @method('PUT')
-                @foreach ($data as $trInv)
-                    
+            <form action="{{ route('invoice.update', $trInv->no_invoice )}}" method="POST">
+                @csrf
+                @method('PATCH')
                 <div class="row">
                     <div class="col-xl-6 col-lg-5">
                         <div class="form-group">
                             <strong>Invoice Date</strong>
-                            <input type="text" name="inv_date" class="form-control" value="{{gmt_date($trInv->invoice_date)}}">
+                            <input type="text" name="invoice_date" class="form-control" value="{{$trInv->invoice_date}}">
                         </div>
                         <div class="form-group">
                             <strong>To</strong>
-                            <textarea name="to" id="" cols="20" rows="5" class="form-control">{{$trInv->To}}</textarea>
+                            <textarea name="To" id="" cols="20" rows="5" class="form-control">{{$trInv->To}}</textarea>
                         </div>
                         <div class="form-gorup">
                             <strong>Sales Name</strong>
-                            <select name="sales_name" class="form-control" title="Choose Sales Name..." value="{{$trInv->id_sales}}">
+                            <select name="id_sales" class="form-control" title="Choose Sales Name..." value="{{$trInv->id_sales}}">
                                 <option value="" disabled>Choose sales name...</option>
                                 @foreach ($sales as $item)
                                 <option value="{{$item->id}}" {{($item->id==$trInv->id_sales)?'selected':''}}>{{$item->sales_name}}</option>
@@ -58,7 +58,7 @@ function rupiah($val){
                         </div>
                         <div class="form-gorup">
                             <strong>Courier </strong>
-                            <select name="courier" class="form-control" title="Choose Courier..." value="{{$trInv->courier_id}}">
+                            <select name="id_courier" class="form-control" title="Choose Courier..." value="{{$trInv->id_courier}}">
                                 <option value="" disabled>Choose courier name...</option>
                                 @foreach ($courier as $row)
                                 <option value="{{$row->id}}" {{($row->id==$trInv->id_courier)?'selected':''}}>{{$row->courier_name}}</option>
@@ -69,8 +69,7 @@ function rupiah($val){
                     <div class="col-xl-6 col-lg-5">
                         <div class="form-group">
                             <strong>Ship To</strong>
-                            <textarea name="ship_to" cols="20" rows="5" class="form-control">{{$trInv->Ship_to}}</textarea>
-                            
+                            <textarea name="Ship_to" cols="20" rows="5" class="form-control">{{$trInv->Ship_to}}</textarea>
                         </div>
                         <div class="form-group">
 
@@ -99,7 +98,8 @@ function rupiah($val){
                     <tbody>
                         @php
                          $courierfee = $trInv->courier_fee; 
-                         $sum =0;   
+                         $sum =0; 
+                         $subTotal=0;  
                         @endphp
                         @foreach ($detail_inv as $row)
                         <tr>
@@ -110,6 +110,7 @@ function rupiah($val){
                             <td class="text-right">{{rupiah($row->qty*$row->price)}}</td>
                         </tr>
                         @php
+                            $subTotal += $row->qty*$row->price;
                             $sum += $courierfee*$row->weight*$row->qty;
                         @endphp
                         @endforeach
@@ -118,7 +119,7 @@ function rupiah($val){
                         <tr>
                             <th colspan="3" class="border-0"></th>
                             <th>Sub Total</th>
-                            <th class="text-right">{{rupiah($trInv->SubTotal)}}</th>
+                            <th class="text-right">{{rupiah($subTotal)}}</th>
                         </tr>
                         <tr>
                             <th colspan="3" class="border-0"></th>
@@ -128,15 +129,18 @@ function rupiah($val){
                         <tr>
                             <th colspan="3" class="border-0"></th>
                             <th>Total</th>
-                            <th class="text-right">{{rupiah($trInv->SubTotal+$sum)}}</th>
+                            <th class="text-right">{{rupiah($subTotal+$sum)}}</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
+            <input type="text" name="SubTotal" value="{{$subTotal}}">
+            <input type="text" name="Courierfee" value="{{$sum}}">
+            
+            @endforeach
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Save</button>
             </div>
-            @endforeach
         </form>
         </div>
         @section('script_')
